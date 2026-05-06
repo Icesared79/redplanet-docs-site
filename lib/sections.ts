@@ -36,7 +36,7 @@ export const sections: Section[] = [
   {
     slug: "how-it-works",
     file: "05-pipeline-and-self-correction.md",
-    title: "How the Pipeline Works & Self-Correction",
+    title: "How the Pipeline Works",
     short: "05",
   },
   {
@@ -48,7 +48,7 @@ export const sections: Section[] = [
   {
     slug: "data-quality",
     file: "07-data-quality-and-where-were-going.md",
-    title: "Data Quality, Verification & Where We're Going",
+    title: "Data Quality & Where We're Going",
     short: "07",
   },
 ];
