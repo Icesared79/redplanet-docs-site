@@ -1,0 +1,133 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html, body {
+  background-color: #1A1714;
+  color: #F7F5F2;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+/* Wrap long numbers / monospace tokens in JetBrains Mono */
+code, kbd, samp, pre {
+  font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
+}
+
+/* Prose tweaks for the markdown renderer */
+.prose-rp {
+  color: #F7F5F2;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.prose-rp h1 {
+  font-family: var(--font-space-grotesk), system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 2.25rem;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin: 0 0 1.5rem;
+  color: #F7F5F2;
+}
+
+.prose-rp h2 {
+  font-family: var(--font-space-grotesk), system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  margin: 2.5rem 0 1rem;
+  color: #F7F5F2;
+}
+
+.prose-rp h3 {
+  font-family: var(--font-space-grotesk), system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 1.15rem;
+  margin: 2rem 0 0.75rem;
+  color: #F7F5F2;
+}
+
+.prose-rp p {
+  margin: 0 0 1rem;
+}
+
+.prose-rp strong {
+  color: #F7F5F2;
+  font-weight: 600;
+  font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
+  font-size: 0.95em;
+}
+
+.prose-rp em {
+  color: #6B6560;
+  font-style: italic;
+  display: block;
+  font-size: 0.875rem;
+  margin-top: -0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.prose-rp ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.25rem;
+}
+
+.prose-rp ul li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.prose-rp ul li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+  width: 0.5rem;
+  height: 1px;
+  background: #B83228;
+}
+
+.prose-rp hr {
+  border: 0;
+  border-top: 1px solid #3A3430;
+  margin: 2.5rem 0;
+}
+
+.prose-rp a {
+  color: #B83228;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(184, 50, 40, 0.4);
+  transition: border-color 150ms;
+}
+
+.prose-rp a:hover {
+  border-bottom-color: #B83228;
+}
+
+.prose-rp img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  border: 1px solid #3A3430;
+  margin: 1.5rem 0 0.5rem;
+  display: block;
+}
+
+/* Footer figures-current line — italic + muted */
+.prose-rp p > em:only-child {
+  display: block;
+  color: #6B6560;
+  font-style: italic;
+  font-size: 0.875rem;
+}
