@@ -3,6 +3,7 @@ import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import Sidebar from "@/components/Sidebar";
 import TopBar from "@/components/TopBar";
+import ThemeProvider from "@/components/ThemeProvider";
 import "./globals.css";
 
 const inter = Inter({
@@ -26,6 +27,13 @@ export const metadata: Metadata = {
   description:
     "Technical documentation for Red Planet and the Atlas autonomous data engine.",
   metadataBase: new URL("https://docs.redplanetdata.com"),
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+    apple: { url: "/apple-touch-icon.png", sizes: "180x180" },
+  },
   openGraph: {
     title: "Red Planet — Documentation",
     description:
@@ -44,17 +52,20 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrains.variable}`}
     >
       <body className="bg-bg text-text">
-        <Sidebar />
-        <div className="md:pl-64">
-          <TopBar />
-          <main className="px-6 md:px-12 py-10">
-            <div className="mx-auto max-w-prose">{children}</div>
-          </main>
-        </div>
-        <Analytics />
+        <ThemeProvider>
+          <Sidebar />
+          <div className="md:pl-64">
+            <TopBar />
+            <main className="px-6 md:px-12 py-10">
+              <div className="mx-auto max-w-prose">{children}</div>
+            </main>
+          </div>
+          <Analytics />
+        </ThemeProvider>
       </body>
     </html>
   );

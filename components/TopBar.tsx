@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ThemeToggle from "./ThemeToggle";
 
 export default function TopBar() {
   return (
@@ -13,14 +14,17 @@ export default function TopBar() {
             Atlas
           </span>
         </Link>
-        <a
-          href="https://redplanetdata.com"
-          target="_blank"
-          rel="noreferrer"
-          className="text-xs font-mono uppercase tracking-[0.18em] text-muted hover:text-text transition-colors"
-        >
-          redplanetdata.com →
-        </a>
+        <div className="flex items-center gap-4">
+          <a
+            href="https://redplanetdata.com"
+            target="_blank"
+            rel="noreferrer"
+            className="hidden sm:inline text-xs font-mono uppercase tracking-[0.18em] text-muted hover:text-text transition-colors"
+          >
+            redplanetdata.com →
+          </a>
+          <ThemeToggle />
+        </div>
       </div>
     </header>
   );

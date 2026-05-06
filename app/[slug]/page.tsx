@@ -5,6 +5,7 @@ import remarkGfm from "remark-gfm";
 import { sections, findSection } from "@/lib/sections";
 import { readMarkdown } from "@/lib/content";
 import PageNav from "@/components/PageNav";
+import MarkdownImage from "@/components/MarkdownImage";
 
 export function generateStaticParams() {
   return sections.map((s) => ({ slug: s.slug }));
@@ -40,10 +41,10 @@ export default function SectionPage({
           components={{
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
             img: ({ node, ...props }) => (
-              // Plain <img> works fine here since assets live under /public/images/
-              // and Next serves them statically. Avoids next/image config friction.
-              // eslint-disable-next-line @next/next/no-img-element
-              <img {...props} alt={props.alt ?? ""} />
+              // MarkdownImage is a client component that wraps the <img> with
+              // an on-click lightbox. It renders a normal img inline and a
+              // fixed-position overlay when expanded.
+              <MarkdownImage {...props} />
             ),
           }}
         >
