@@ -13,12 +13,12 @@ export default function TopBar() {
           <img
             src="/brand/lockup-horizontal-light.svg"
             alt="Red Planet"
-            className="block h-[34px] w-auto dark:hidden"
+            className="block h-[27px] w-auto dark:hidden"
           />
           <img
             src="/brand/lockup-horizontal.svg"
             alt="Red Planet"
-            className="hidden h-[34px] w-auto dark:block"
+            className="hidden h-[27px] w-auto dark:block"
           />
           <span className="text-xs font-mono uppercase tracking-[0.18em] text-muted">
             Atlas
