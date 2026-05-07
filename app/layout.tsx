@@ -30,7 +30,8 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
-      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon-32.png", type: "image/png", sizes: "32x32" },
+      { url: "/favicon-16.png", type: "image/png", sizes: "16x16" },
     ],
     apple: { url: "/apple-touch-icon.png", sizes: "180x180" },
   },
@@ -40,7 +41,15 @@ export const metadata: Metadata = {
       "Atlas: an autonomous data engine for property, transaction, distress, and signal intelligence.",
     url: "https://docs.redplanetdata.com",
     siteName: "Red Planet Documentation",
+    images: [{ url: "/og-image.png", width: 1280, height: 640, alt: "Red Planet" }],
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Red Planet — Documentation",
+    description:
+      "Atlas: an autonomous data engine for property, transaction, distress, and signal intelligence.",
+    images: ["/og-image.png"],
   },
 };
 
