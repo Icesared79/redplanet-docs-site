@@ -7,10 +7,20 @@ export default function TopBar() {
       <div className="flex items-center justify-between px-6 md:px-10 h-14">
         <Link
           href="/"
-          className="font-display font-bold text-base tracking-tight text-text"
+          className="flex items-center gap-3"
+          aria-label="Red Planet — Atlas documentation"
         >
-          <span className="text-brand">Red Planet</span>
-          <span className="ml-2 text-xs font-mono uppercase tracking-[0.18em] text-muted">
+          <img
+            src="/brand/lockup-horizontal-light.svg"
+            alt="Red Planet"
+            className="block h-[27px] w-auto dark:hidden"
+          />
+          <img
+            src="/brand/lockup-horizontal.svg"
+            alt="Red Planet"
+            className="hidden h-[27px] w-auto dark:block"
+          />
+          <span className="text-xs font-mono uppercase tracking-[0.18em] text-muted">
             Atlas
           </span>
         </Link>
