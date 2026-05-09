@@ -46,8 +46,7 @@ export default function MarkdownImage(
           <img
             src={props.src as string}
             alt={alt}
-            onClick={(e) => e.stopPropagation()}
-            className="max-h-[95vh] max-w-[95vw] rounded-md border border-white/10 shadow-2xl animate-scale-in cursor-default"
+            className="max-h-[95vh] max-w-[95vw] rounded-md border border-white/10 shadow-2xl animate-scale-in cursor-zoom-out"
           />
         </div>
       )}
