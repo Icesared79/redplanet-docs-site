@@ -53,8 +53,8 @@ export default function RootLayout({
           <Sidebar />
           <div className="md:pl-[272px]">
             <TopBar />
-            <main className="px-5 md:px-12 py-14 md:py-20">
-              <div className="mx-auto max-w-prose">{children}</div>
+            <main className="px-5 md:px-14 py-14 md:py-20">
+              <div className="mx-auto max-w-[900px]">{children}</div>
             </main>
           </div>
           <Analytics />

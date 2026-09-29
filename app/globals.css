@@ -200,6 +200,18 @@ body {
   color: var(--fg-3);
 }
 
+/* Figures carry their own list structure, so the prose list markers and
+   indents must not reach inside them. */
+.prose-rp figure li {
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+.prose-rp figure ol > li::before,
+.prose-rp figure ul > li::before {
+  content: none;
+}
+
 .prose-rp hr {
   border: 0;
   border-top: var(--border);
