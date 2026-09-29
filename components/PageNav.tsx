@@ -7,60 +7,53 @@ export default function PageNav({ slug }: { slug: string }) {
 
   const prev = idx > 0 ? sections[idx - 1] : null;
   const next = idx < sections.length - 1 ? sections[idx + 1] : null;
-
   if (!prev && !next) return null;
 
   return (
     <nav
       aria-label="Page navigation"
-      className="mt-16 pt-8 border-t border-border grid grid-cols-1 sm:grid-cols-2 gap-4"
+      className="mt-20 grid grid-cols-1 gap-px border-t border-rule sm:grid-cols-2"
     >
       {prev ? (
         <Link
           href={`/${prev.slug}`}
           rel="prev"
-          className="group sm:col-start-1 rounded-md border border-border bg-bg/40 px-5 py-4
-                     transition-colors hover:border-brand hover:bg-surface/60"
+          className="group py-7 pr-6 transition-colors duration-fast ease-out"
         >
-          <span
-            className="block font-mono text-[11px] uppercase tracking-[0.18em] text-muted
-                       transition-colors group-hover:text-brand"
-          >
-            ← Previous
+          <span className="block font-mono text-label text-fg-3">
+            ← Previous · {prev.short}
           </span>
           <span
-            className="mt-2 block font-display text-base text-text leading-snug
-                       transition-colors group-hover:text-brand"
+            className="mt-3 block text-[19px] leading-[1.3] tracking-[-0.015em]
+                       text-fg-2 transition-colors duration-fast ease-out
+                       group-hover:text-fg"
           >
             {prev.title}
           </span>
         </Link>
       ) : (
-        <span aria-hidden className="hidden sm:block sm:col-start-1" />
+        <span aria-hidden className="hidden sm:block" />
       )}
 
       {next ? (
         <Link
           href={`/${next.slug}`}
           rel="next"
-          className="group sm:col-start-2 rounded-md border border-border bg-bg/40 px-5 py-4 text-right
-                     transition-colors hover:border-brand hover:bg-surface/60"
+          className="group py-7 sm:border-l sm:border-rule sm:pl-6 sm:text-right"
         >
-          <span
-            className="block font-mono text-[11px] uppercase tracking-[0.18em] text-muted
-                       transition-colors group-hover:text-brand"
-          >
-            Next →
+          <span className="block font-mono text-label text-fg-3">
+            Next · {next.short} →
           </span>
           <span
-            className="mt-2 block font-display text-base text-text leading-snug
-                       transition-colors group-hover:text-brand"
+            className="mt-3 block text-[19px] leading-[1.3] tracking-[-0.015em]
+                       text-fg-2 transition-colors duration-fast ease-out
+                       group-hover:text-fg"
           >
             {next.title}
           </span>
         </Link>
       ) : (
-        <span aria-hidden className="hidden sm:block sm:col-start-2" />
+        <span aria-hidden className="hidden sm:block" />
       )}
     </nav>
   );

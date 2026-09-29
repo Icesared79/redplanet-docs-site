@@ -35,22 +35,40 @@ export default function SectionPage({
 
   return (
     <>
+      {/* The section eyebrow — the one place red appears on the page body. */}
+      <p className="rp-eyebrow mb-7">
+        <span>§ {section.short}</span>
+        <span aria-hidden>—</span>
+        <span>{section.title}</span>
+      </p>
+
       <article className="prose-rp">
         <ReactMarkdown
           remarkPlugins={[remarkGfm]}
           components={{
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            img: ({ node, ...props }) => (
-              // MarkdownImage is a client component that wraps the <img> with
-              // an on-click lightbox. It renders a normal img inline and a
-              // fixed-position overlay when expanded.
-              <MarkdownImage {...props} />
-            ),
+            img: ({ node, ...props }) => <MarkdownImage {...props} />,
+            // Bold carries two jobs in this content: a figure (set in mono,
+            // tabular, per the design system) and an ordinary prose lead-in
+            // (set in sans). Decide by what the span actually contains.
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            strong: ({ node, children, ...props }) => {
+              const text = String(
+                Array.isArray(children) ? children.join("") : children ?? "",
+              );
+              const isFigure = /^[\d][\d,.\s%-]*$/.test(text.trim());
+              return (
+                <strong {...props} className={isFigure ? "rp-fig" : undefined}>
+                  {children}
+                </strong>
+              );
+            },
           }}
         >
           {md}
         </ReactMarkdown>
       </article>
+
       <PageNav slug={params.slug} />
     </>
   );

@@ -2,23 +2,17 @@
 
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
-import { Moon, Sun } from "lucide-react";
 
 export default function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
-  // Avoid hydration mismatch — next-themes resolves the actual theme on the
-  // client, so we render an inert placeholder of the same size on the server.
+  // next-themes resolves the active theme on the client, so the server render
+  // is an inert placeholder of the same size to avoid a hydration mismatch.
   useEffect(() => setMounted(true), []);
 
   if (!mounted) {
-    return (
-      <span
-        aria-hidden
-        className="inline-flex h-8 w-8 rounded-md border border-border"
-      />
-    );
+    return <span aria-hidden className="inline-block h-9 w-[76px]" />;
   }
 
   const isDark = resolvedTheme === "dark";
@@ -30,9 +24,11 @@ export default function ThemeToggle() {
       onClick={() => setTheme(next)}
       aria-label={`Switch to ${next} mode`}
       title={`Switch to ${next} mode`}
-      className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-border text-muted transition-colors hover:border-brand hover:text-brand"
+      className="inline-flex h-9 items-center rounded-pill border border-rule px-4
+                 font-mono text-label text-fg-3 transition-colors duration-fast
+                 ease-out hover:border-rule-strong hover:text-fg"
     >
-      {isDark ? <Sun size={15} strokeWidth={1.75} /> : <Moon size={15} strokeWidth={1.75} />}
+      {isDark ? "Light" : "Dark"}
     </button>
   );
 }

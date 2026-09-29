@@ -1,31 +1,14 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import Sidebar from "@/components/Sidebar";
 import TopBar from "@/components/TopBar";
 import ThemeProvider from "@/components/ThemeProvider";
 import "./globals.css";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-space-grotesk",
-  display: "swap",
-});
-const jetbrains = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-jetbrains-mono",
-  display: "swap",
-});
-
 export const metadata: Metadata = {
   title: "Red Planet — Documentation",
   description:
-    "Technical documentation for Red Planet and the Atlas autonomous data engine.",
+    "How Atlas works: an autonomous data engine for property, transaction, distress, community, and siting intelligence.",
   metadataBase: new URL("https://docs.redplanetdata.com"),
   icons: {
     icon: [
@@ -38,7 +21,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Red Planet — Documentation",
     description:
-      "Atlas: an autonomous data engine for property, transaction, distress, and signal intelligence.",
+      "How Atlas works: an autonomous data engine for property, transaction, distress, community, and siting intelligence.",
     url: "https://docs.redplanetdata.com",
     siteName: "Red Planet Documentation",
     images: [{ url: "/og-image.png", width: 1280, height: 640, alt: "Red Planet" }],
@@ -48,7 +31,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Red Planet — Documentation",
     description:
-      "Atlas: an autonomous data engine for property, transaction, distress, and signal intelligence.",
+      "How Atlas works: an autonomous data engine for property, transaction, distress, community, and siting intelligence.",
     images: ["/og-image.png"],
   },
 };
@@ -62,14 +45,15 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrains.variable}`}
+      data-product="red-planet"
+      data-density="comfortable"
     >
-      <body className="bg-bg text-text">
+      <body>
         <ThemeProvider>
           <Sidebar />
-          <div className="md:pl-64">
+          <div className="md:pl-[272px]">
             <TopBar />
-            <main className="px-6 md:px-12 py-10">
+            <main className="px-5 md:px-12 py-14 md:py-20">
               <div className="mx-auto max-w-prose">{children}</div>
             </main>
           </div>

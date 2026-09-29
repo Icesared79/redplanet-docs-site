@@ -1,54 +1,77 @@
-# What Atlas Is & The Intelligence Layer
+# What Atlas is.
 
-Atlas is not a database. It is not a data vendor. It is not a scraper. It is an autonomous intelligence engine that continuously finds, acquires, normalizes, and improves its own data — without human intervention.
+Atlas is not a database, a vendor feed, or a scraper. It is an autonomous engine that finds, acquires, normalizes, verifies, and improves its own data asset, and it runs whether or not anyone is watching it.
 
-The distinction matters. A database stores what you put into it. Atlas decides what it needs, goes and gets it, verifies it, and makes it queryable. The engine is self-directing — it identifies gaps in its own coverage, discovers new sources to fill them, builds the pipelines to ingest them, and monitors its own health continuously.
+The distinction is operational, not rhetorical. A database holds what you put in it. Atlas decides what it needs, goes and gets it, checks it against the document it came from, and makes it queryable. It identifies gaps in its own coverage, queues new sources to fill them, and monitors its own health continuously.
 
-![Atlas Mission Control — live record count, active sources, and 30-day growth](images/mission-control-overview.png)
+## The shape of it, as of 2026-09-29
 
-*Atlas Mission Control — live record count, active sources, and 30-day growth*
+| | |
+|---|---|
+| Verified records | **515,121,435** |
+| Active sources | **304** |
+| Source executions, last 30 days | **4,695**, of which **4,418** completed |
+| Parcel records under quality classification | **22,850,817** |
+| Distress filings tracked | **235,691** |
 
-## Autonomous by Design
+Every figure on this page is a live count from the engine, not a marketing round number. They move nightly.
 
-Atlas runs 24 hours a day, 7 days a week. At any given moment hundreds of autonomous runners are active across hundreds of active sources, executing ingestion, normalization, signal generation, and quality verification. The nightly pipeline maintains a 93.4% completion rate across hundreds of concurrent operations — without a team managing it.
+## Autonomous by design
 
-When a source fails the system detects it. When coverage gaps emerge the engine identifies them. When data quality degrades below acceptable thresholds it flags it. The system is designed to operate and improve itself continuously.
+Atlas runs continuously. Each source has a runner responsible for reaching it, extracting what changed, normalizing it to a common schema, and writing it into the asset. Over the thirty days to 2026-09-29, **250** distinct sources executed and **94.1%** of **4,695** runs completed.
 
-## Proprietary by Nature
+That figure describes run outcomes, not coverage. Some sources run nightly, others weekly, quarterly, or on demand, and a meaningful number of registered sources have not returned data recently and are being worked through. We publish the completion rate because it is measurable, and we say what it does not cover because a single percentage is easy to mistake for a guarantee.
 
-The data asset Atlas has built cannot be purchased from any vendor. It is the product of thousands of source relationships, normalization decisions, and signal generation processes developed over time. Hundreds of millions of verified records across property, transaction, distress, entity, commercial, and climate data — joined, normalized, and queryable as a single coherent asset.
+## Proprietary by necessity
 
-## From Records to Intelligence
+We do not buy from ATTOM, CoreLogic, DataTree, Black Knight, or any aggregator that resells someone else's collection. This is a standing rule, not a budget decision. A data asset assembled from the same vendors as everyone else's is not an asset — it is a subscription, and it can be cancelled.
 
-Raw records are the foundation. What Atlas builds on top of them is what creates value. A property address, an assessed value, a deed transfer — individually these are facts. Connecting them, contextualizing them, and deriving meaning from them is what turns a data asset into intelligence. Most data providers stop at the record. Atlas starts there.
+What Atlas holds instead is the product of going to each jurisdiction and system directly: hundreds of source relationships, thousands of normalization decisions, and a verification layer that ties consequential claims back to the document that supports them. That cannot be bought, which is the point.
 
-## What Signals Are
+## Much of it cannot be collected again
 
-A signal is a derived indicator computed from one or more underlying data points. Where a record tells you what exists, a signal tells you what it means. Atlas generates signals automatically as new data flows through the pipeline — no manual analysis, no human interpretation required.
+This is the part that is easiest to miss and hardest to replicate.
 
-Current signal categories include:
+Most county and city systems show only the current version of a record. When a filing is satisfied, withdrawn, or superseded, the earlier version is overwritten or removed — not archived, not versioned, simply gone. The system is built for administration, not history, and administration only needs to know what is true today.
 
-- Distress indicators — derived from filing activity, tax delinquency, and ownership patterns
-- Equity signals — computed from assessed value, transaction history, and debt indicators
-- Market velocity signals — derived from transaction frequency and price movement within a geography
-- Ownership pattern flags — entity-level signals derived from SOS data, LLC activity, and deed transfer patterns
+Atlas captures records every night and keeps each version. So the asset holds a history of what a record said over time, including states that no longer exist anywhere the public can reach.
 
-## Distress Intelligence
+Take a single Hartford, Connecticut property: tax liens, a lis pendens, a foreclosure withdrawal, and a deed transfer, each captured when it was filed. Several of those filings are no longer visible on the county's own systems. The sequence — a lien, then a foreclosure, then a withdrawal, then a transfer — is the thing that tells you what happened to the owner. Nobody can go back and assemble it now.
 
-Distress is one of the highest-value signal categories in real estate. Atlas tracks distress filings continuously — lis pendens, foreclosure activity, tax delinquency, and court records — and converts them into actionable signals that surface properties and owners under financial stress before that stress becomes public knowledge.
+A competitor with more capital can buy a parcel file tomorrow. Nobody can buy the last two years of overwritten filings, because they were not retained. That gap widens every night we run and it cannot be closed retroactively.
 
-At current scale Atlas has tracked hundreds of thousands of distress filings and generated tens of thousands of distress signals, updated automatically as new filing activity is detected.
+## From records to intelligence
 
-## Scoring
+A parcel identifier, an assessed value, a deed transfer — individually these are facts. Connecting them, placing them in context, and deriving something decision-relevant from them is what turns a data asset into intelligence. Most providers stop at the record.
 
-Beyond individual signals Atlas produces composite scores — multi-factor rankings that combine several signal inputs into a single actionable output. The NYC Office Conversion Intelligence product scores **1,683** Manhattan buildings across conversion viability, zoning compatibility, debt distress, and market absorption. The CT Solar Intelligence product scores properties across solar potential, roof characteristics, utility rates, and incentive eligibility.
+### What a signal is
 
-Scoring models are built on top of Atlas data and can be developed for any market, any asset class, and any decision use case.
+A signal is a derived indicator computed from one or more underlying records. Where a record says what exists, a signal says what it may mean. Signals are generated as new data flows through the pipeline, with no manual analysis step.
 
-## Why This Matters Commercially
+Current signal families include:
 
-Intelligence is what clients pay for. Raw data is a commodity — it can be licensed, aggregated, or approximated. Derived intelligence built on a proprietary data asset cannot be replicated without replicating the asset itself. That is the moat.
+- Distress indicators derived from filing activity, tax delinquency, and ownership patterns
+- Equity and debt indicators computed from assessed value, transaction history, and recorded instruments
+- Market velocity derived from transaction frequency and price movement within a geography
+- Ownership pattern flags derived from entity registrations, LLC activity, and transfer sequences
+- Agenda-item signals derived from what a jurisdiction has actually placed on a meeting agenda
+
+### Distress
+
+Distress is among the most time-sensitive categories we hold, and among the most valuable. Atlas tracks **235,691** filings across tax delinquency, foreclosure and lis pendens activity, recorded liens, and related court records, and converts them into signals as new filing activity is detected.
+
+One principle has been earned the hard way and is now written down: administrative distress outranks foreclosure. Tax delinquency, code enforcement, and vacancy registries are evaluated with equal or greater priority than foreclosure vectors, because foreclosure data repeatedly failed on contact with real records while the administrative signals held.
+
+### The community layer
+
+The newest and most differentiated layer covers what a jurisdiction is actually doing: its governing body, its hearing calendar, its ordinances, its agenda items, and the public testimony given at the podium. In Florida alone Atlas tracks **478** jurisdictions — 67 counties and 411 municipalities — across **9,992** meetings and **144,592** agenda items, with the same layer built for Connecticut and Ohio.
+
+This is the layer that answers the question a parcel record cannot: not what the land is, but what the people who govern it are about to decide.
+
+## Why it matters commercially
+
+Raw data is a commodity. It can be licensed, aggregated, or approximated. Intelligence derived from an asset that was assembled directly, and verified against source documents, cannot be replicated without repeating the assembly. That is the moat, and it is the only kind that compounds.
 
 ---
 
-*All figures current as of 2026-05-04 21:53 UTC. Atlas ingests new data and generates new signals nightly.*
+*Figures are live counts taken on 2026-09-29. Atlas ingests new data and generates new signals nightly.*

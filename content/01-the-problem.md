@@ -1,29 +1,37 @@
-# The Problem
+# The problem.
 
-The real estate and finance industries are among the largest asset classes in the world, yet the data infrastructure supporting them is fragmented, expensive, and largely unchanged for decades. Institutions pay hundreds of thousands of dollars annually — sometimes monthly — for data products that are static, siloed, and built on the same underlying sourcing methodology they were built on twenty years ago.
+Real estate and the infrastructure being built on top of it are among the largest asset classes in the world. The data underneath them is fragmented, expensive, and sourced the same way it was twenty years ago. Institutions pay six figures a year — sometimes a quarter — for products that are static, siloed, and assembled from the same handful of aggregators everyone else buys from.
 
-## The Core Problems
+## Four problems, not one
 
 ### Fragmentation
 
-Property records, transaction history, distress signals, entity ownership, commercial fundamentals, and demographic data live in separate systems, sold by separate vendors, requiring significant internal resources to join and normalize before they are usable.
+Parcel records, transaction history, distress filings, entity ownership, permits, utility plans, and the decisions a county actually made last Tuesday night live in separate systems, sold by separate vendors, in formats that do not join. The work of making them one usable asset falls on the buyer.
 
 ### Cost
 
-The largest providers — CoStar, ATTOM, CoreLogic — operate on pricing models that price out independent investors, smaller institutions, and emerging market participants entirely. Access to comprehensive data is effectively gated by budget.
+The largest providers price for the largest institutions. Independent operators, regional funds, and specialist firms are priced out of the comprehensive view entirely, which means the ability to see a market clearly tracks budget rather than judgment.
 
 ### Rigidity
 
-Legacy providers deliver data in fixed formats for fixed use cases. The data does not adapt to what a client actually needs — the client adapts to what the provider offers.
+Legacy providers deliver fixed formats for fixed use cases. The data does not adapt to the question being asked; the buyer adapts the question to the data that exists.
 
 ### Latency
 
-Most commercial real estate and property data products are updated monthly or quarterly. Markets move faster than that. Distress signals, ownership changes, and filing activity that matter for decision-making happen daily.
+Most property data products refresh monthly or quarterly. A tax delinquency, a lis pendens, a rezoning on a Tuesday agenda, and a land assembly under a new LLC do not wait for the next release cycle.
 
-## The Result
+## The gap nobody is filling
 
-The institutions best positioned to act on real estate intelligence are the ones who can afford to assemble it themselves. Everyone else operates with an information disadvantage.
+There is a second problem underneath the first one, and it is the reason we built what we built.
+
+The decisions that determine what a piece of land is worth are not made in a data feed. They are made in a county commission meeting, in an ordinance amendment, in a comprehensive plan update, in a utility's capital plan. That record exists — it is produced by the jurisdiction itself, in the jurisdiction's own documents — but it is scattered across hundreds of separate agenda portals, minutes archives, and permit systems, published in formats built for compliance rather than analysis, and reconciled by nobody.
+
+So the market runs on rumor. A tracker says a county passed a moratorium; the county passed a first reading of a draft that died in committee. A press release says a project is approved; the vote was a continuance. Anyone underwriting against that record is underwriting against hearsay.
+
+## What this costs
+
+The institutions best positioned to act are the ones who can afford to assemble the record themselves. Everyone else operates at an information disadvantage that compounds — and increasingly, so does everyone acting on a version of events that was never verified against the document.
 
 ---
 
-Atlas was built to solve this directly. Not by aggregating existing vendor feeds — but by building a proprietary, autonomous data engine that sources, normalizes, and continuously improves its own data asset independently of any legacy provider. Today that engine tracks hundreds of millions of verified records across hundreds of active sources, growing autonomously every night.
+We built Atlas to close both gaps at once. Not by reselling vendor feeds, but by running an autonomous engine that sources, normalizes, verifies, and continuously improves its own asset, and by holding every consequential claim to the document it came from. As of **2026-09-29** that asset holds **515,121,435** verified records drawn from **304** active sources.
