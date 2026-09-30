@@ -72,6 +72,7 @@ export function DefRow({
 }) {
   return (
     <div
+      className="rp-def-row"
       style={{
         display: "grid",
         gridTemplateColumns: `${columns}px minmax(0,1fr)`,

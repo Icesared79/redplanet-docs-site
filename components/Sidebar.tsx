@@ -182,6 +182,27 @@ export default function Sidebar() {
     </Link>
   );
 
+  const closeButton = (
+    <button
+      type="button"
+      aria-label="Close navigation"
+      onClick={() => setOpen(false)}
+      className="rp-theme-toggle"
+      style={{
+        margin: "22px 24px 0 0",
+        padding: "6px 14px",
+        border: "1px solid var(--rule-strong)",
+        borderRadius: "var(--radius-pill)",
+        background: "transparent",
+        color: "var(--fg-2)",
+        font: "400 12px/1 var(--font-mono)",
+        cursor: "pointer",
+      }}
+    >
+      Close
+    </button>
+  );
+
   return (
     <>
       <header
@@ -195,6 +216,7 @@ export default function Sidebar() {
           position: "sticky",
           top: 0,
           zIndex: 30,
+          display: open ? "none" : undefined,
         }}
       >
         <Link href="/" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none", color: "var(--fg-1)" }}>
@@ -234,7 +256,10 @@ export default function Sidebar() {
           background: "var(--bg)",
         }}
       >
-        {logo}
+        <div style={{ display: "flex", alignItems: "flex-start" }}>
+          <div style={{ flex: 1, minWidth: 0 }}>{logo}</div>
+          {open && closeButton}
+        </div>
         <NavLinks pathname={pathname} onNavigate={() => setOpen(false)} />
         <Footer />
       </aside>

@@ -76,14 +76,10 @@
   .rp-sidebar.rp-sidebar--open {
     display: flex;
     position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
+    inset: 0;
     z-index: 40;
     height: 100vh;
-    width: 85vw;
-    max-width: 320px;
-    box-shadow: var(--elev-3);
+    width: 100%;
   }
   .rp-def-row {
     grid-template-columns: minmax(0, 1fr) !important;
