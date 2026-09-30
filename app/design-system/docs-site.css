@@ -1,0 +1,119 @@
+/* Docs-site interaction classes. React inline styles (used throughout for
+   pixel fidelity to the reference) can't express :hover, so hover-only
+   rules live here instead. Everything else is inline per-component. */
+
+.rp-nextprev {
+  transition: filter 120ms var(--ease-out);
+}
+.rp-nextprev:hover {
+  filter: brightness(0.95);
+}
+
+.rp-nav-link {
+  transition: background 120ms var(--ease-out), color 120ms var(--ease-out);
+}
+.rp-nav-link:hover {
+  background: var(--bg-hover);
+  color: var(--fg-1);
+}
+
+.rp-subnav-link {
+  transition: color 120ms var(--ease-out);
+}
+.rp-subnav-link:hover {
+  color: var(--fg-1);
+}
+
+.rp-underline-link {
+  text-decoration: underline;
+  text-decoration-color: var(--rule-strong);
+  text-underline-offset: 4px;
+  transition: text-decoration-color 120ms var(--ease-out);
+}
+.rp-underline-link:hover {
+  text-decoration-color: var(--fg-1);
+}
+
+.rp-mailto {
+  transition: text-decoration-color 120ms var(--ease-out);
+}
+.rp-mailto:hover {
+  text-decoration-color: var(--fg-1);
+}
+
+.rp-theme-toggle {
+  transition: background 120ms var(--ease-out), color 120ms var(--ease-out);
+}
+.rp-theme-toggle:hover {
+  background: var(--bg-hover);
+  color: var(--fg-1);
+}
+
+.rp-pipe-stage .rp-pipe-name {
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 4px;
+  transition: text-decoration-color 120ms var(--ease-out), color 200ms var(--ease-out);
+}
+.rp-pipe-stage:hover .rp-pipe-name {
+  text-decoration-color: var(--rule-strong);
+}
+
+/* Mobile top bar + drawer, shown only below 900px. */
+.rp-mobile-bar {
+  display: none;
+}
+.rp-sidebar {
+  display: flex;
+}
+@media (max-width: 900px) {
+  .rp-mobile-bar {
+    display: flex;
+  }
+  .rp-sidebar {
+    display: none;
+  }
+  .rp-sidebar.rp-sidebar--open {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 40;
+    height: 100vh;
+    width: 85vw;
+    max-width: 320px;
+    box-shadow: var(--elev-3);
+  }
+  .rp-def-row {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 8px !important;
+  }
+  .rp-root-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+}
+
+/* Coverage page: the "Where Atlas Operates" table becomes stacked cards
+   below 900px, per reference/Red Planet Docs Coverage Mobile.dc.html. Both
+   markups render (content-first, no JS needed); only one is visible. */
+.rp-coverage-cards {
+  display: none;
+}
+@media (max-width: 900px) {
+  .rp-coverage-table {
+    display: none;
+  }
+  .rp-coverage-cards {
+    display: flex;
+  }
+}
+
+/* Figures and tables scroll horizontally inside their own frame; the page
+   itself never scrolls sideways. */
+.rp-hscroll {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: var(--rule-strong) transparent;
+}

@@ -3,32 +3,50 @@
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 
+// Sidebar footer pill: "Light" or "Dark" is the CURRENT theme (not the
+// target), with a leading 10px half-filled circle glyph, per README
+// "Sidebar > Footer".
 export default function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-
-  // next-themes resolves the active theme on the client, so the server render
-  // is an inert placeholder of the same size to avoid a hydration mismatch.
   useEffect(() => setMounted(true), []);
 
   if (!mounted) {
-    return <span aria-hidden className="inline-block h-9 w-[76px]" />;
+    return <span aria-hidden className="inline-block h-[26px] w-[70px]" />;
   }
 
   const isDark = resolvedTheme === "dark";
-  const next = isDark ? "light" : "dark";
 
   return (
     <button
       type="button"
-      onClick={() => setTheme(next)}
-      aria-label={`Switch to ${next} mode`}
-      title={`Switch to ${next} mode`}
-      className="inline-flex h-9 items-center rounded-pill border border-rule px-4
-                 font-mono text-label text-fg-3 transition-colors duration-fast
-                 ease-out hover:border-rule-strong hover:text-fg"
+      onClick={() => setTheme(isDark ? "light" : "dark")}
+      aria-label="Toggle dark mode"
+      className="rp-theme-toggle"
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: 8,
+        padding: "5px 10px",
+        border: "1px solid var(--rule-strong)",
+        borderRadius: "var(--radius-pill)",
+        background: "transparent",
+        color: "var(--fg-2)",
+        font: "400 12px/1 var(--font-mono)",
+        cursor: "pointer",
+      }}
     >
-      {isDark ? "Light" : "Dark"}
+      <span
+        aria-hidden="true"
+        style={{
+          width: 10,
+          height: 10,
+          borderRadius: "50%",
+          border: "1.5px solid currentColor",
+          background: "linear-gradient(90deg, currentColor 50%, transparent 50%)",
+        }}
+      />
+      {isDark ? "Dark" : "Light"}
     </button>
   );
 }

@@ -13,6 +13,7 @@ export default function ThemeProvider({ children }: { children: ReactNode }) {
       defaultTheme="system"
       enableSystem
       disableTransitionOnChange
+      storageKey="rp-docs-theme"
     >
       {children}
     </NextThemeProvider>

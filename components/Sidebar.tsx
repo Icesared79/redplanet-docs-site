@@ -3,121 +3,241 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { sections } from "@/lib/sections";
+import { PAGES } from "@/lib/nav";
+import ThemeToggle from "./ThemeToggle";
+
+const Mark = ({ size = 20 }: { size?: number }) => (
+  <svg viewBox="0 0 120 120" width={size} height={size} aria-hidden="true" style={{ display: "block", flex: "none" }}>
+    <path d="M60 60 L60 0 A60 60 0 1 1 20.9 14.4 Z" fill="var(--accent)" />
+  </svg>
+);
+
+function useActiveSub(subIds: string[]): string | null {
+  const [active, setActive] = useState<string | null>(null);
+  useEffect(() => {
+    if (subIds.length === 0) return;
+    const onScroll = () => {
+      let a: string | null = null;
+      for (const id of subIds) {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top < 160) a = id;
+      }
+      setActive(a);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+    // subIds is derived from the current route and stable per page view.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [subIds.join("|")]);
+  return active;
+}
+
+function NavLinks({ pathname, onNavigate }: { pathname: string; onNavigate?: () => void }) {
+  const current = PAGES.find((p) => p.href === pathname) ?? null;
+  const activeSub = useActiveSub(current?.subs.map((s) => s.id) ?? []);
+
+  return (
+    <nav
+      aria-label="Sections"
+      style={{ flex: 1, overflowY: "auto", padding: "4px 12px 24px", display: "flex", flexDirection: "column", gap: 2 }}
+    >
+      {PAGES.map((page) => {
+        const active = page.href === pathname;
+        return (
+          <div key={page.href} style={{ display: "flex", flexDirection: "column" }}>
+            <Link
+              href={page.href}
+              onClick={onNavigate}
+              aria-current={active ? "page" : undefined}
+              className={active ? undefined : "rp-nav-link"}
+              style={{
+                display: "grid",
+                gridTemplateColumns: "28px minmax(0,1fr)",
+                alignItems: "baseline",
+                padding: "9px 12px",
+                borderRadius: "var(--radius-xs)",
+                background: active ? "var(--bg-selected)" : undefined,
+                textDecoration: "none",
+                color: active ? "var(--fg-1)" : "var(--fg-2)",
+              }}
+            >
+              <span style={{ font: "400 12px/1.3 var(--font-mono)", color: active ? "var(--fg-1)" : "var(--fg-3)" }}>
+                {page.num}
+              </span>
+              <span
+                style={{
+                  font: `${active ? 500 : 400} 14px/1.35 var(--font-sans)`,
+                  letterSpacing: "-0.005em",
+                }}
+              >
+                {page.navLabel}
+              </span>
+            </Link>
+            {active && page.subs.length > 0 && (
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  margin: "6px 0 10px 51px",
+                  borderLeft: "1px solid var(--rule)",
+                }}
+              >
+                {page.subs.map((s) => {
+                  const subActive = activeSub === s.id;
+                  return (
+                    <a
+                      key={s.id}
+                      href={`#${s.id}`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        onNavigate?.();
+                        const el = document.getElementById(s.id);
+                        if (el) {
+                          window.scrollTo({
+                            top: el.getBoundingClientRect().top + window.scrollY - 40,
+                            behavior: "smooth",
+                          });
+                        }
+                      }}
+                      className={subActive ? undefined : "rp-subnav-link"}
+                      style={{
+                        display: "block",
+                        marginLeft: subActive ? -1 : 0,
+                        padding: "6px 0 6px 14px",
+                        borderLeft: subActive ? "1px solid var(--rule-ink)" : "none",
+                        font: "400 13px/1.35 var(--font-sans)",
+                        color: subActive ? "var(--fg-1)" : "var(--fg-3)",
+                        textDecoration: "none",
+                      }}
+                    >
+                      {s.title}
+                    </a>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        );
+      })}
+    </nav>
+  );
+}
+
+function Footer() {
+  return (
+    <div
+      style={{
+        borderTop: "1px solid var(--rule)",
+        padding: "18px 24px 22px",
+        display: "flex",
+        flexDirection: "column",
+        gap: 8,
+      }}
+    >
+      <a
+        href="https://redplanetdata.com"
+        target="_blank"
+        rel="noopener"
+        className="rp-underline-link"
+        style={{ font: "400 14px/1.3 var(--font-sans)", color: "var(--fg-1)", textUnderlineOffset: 4 }}
+      >
+        redplanetdata.com ↗
+      </a>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12, marginTop: 6 }}>
+        <span style={{ font: "400 12px/1.3 var(--font-mono)", color: "var(--fg-3)" }}>
+          docs.redplanetdata.com
+        </span>
+        <ThemeToggle />
+      </div>
+    </div>
+  );
+}
 
 export default function Sidebar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-
-  // Close the drawer on route change so a tap-through on mobile lands on the
-  // page rather than behind the panel.
   useEffect(() => setOpen(false), [pathname]);
+
+  const logo = (
+    <Link
+      href="/"
+      onClick={() => setOpen(false)}
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: 10,
+        padding: "28px 24px 24px",
+        textDecoration: "none",
+        color: "var(--fg-1)",
+      }}
+    >
+      <Mark />
+      <span style={{ font: "500 16px/1 var(--font-sans)", letterSpacing: "-0.015em" }}>
+        Red Planet<span style={{ color: "var(--accent)" }}>.</span>
+      </span>
+      <span style={{ font: "400 12px/1 var(--font-mono)", color: "var(--fg-3)", marginLeft: "auto" }}>
+        Documentation
+      </span>
+    </Link>
+  );
 
   return (
     <>
-      {/* Mobile toggle. Pill control, comfortable density. */}
-      <button
-        type="button"
-        aria-label={open ? "Close navigation" : "Open navigation"}
-        aria-expanded={open}
-        onClick={() => setOpen((v) => !v)}
-        className="fixed top-3 left-4 z-50 md:hidden inline-flex h-9 items-center rounded-pill
-                   border border-rule bg-bg-raised px-4 font-mono text-label text-fg-2"
+      <header
+        className="rp-mobile-bar"
+        style={{
+          alignItems: "center",
+          justifyContent: "space-between",
+          padding: "14px 20px",
+          borderBottom: "1px solid var(--rule)",
+          background: "var(--bg)",
+          position: "sticky",
+          top: 0,
+          zIndex: 30,
+        }}
       >
-        {open ? "Close" : "Menu"}
-      </button>
+        <Link href="/" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none", color: "var(--fg-1)" }}>
+          <Mark size={18} />
+          <span style={{ font: "500 15px/1 var(--font-sans)", letterSpacing: "-0.015em" }}>
+            Red Planet<span style={{ color: "var(--accent)" }}>.</span>
+          </span>
+        </Link>
+        <button
+          type="button"
+          aria-label={open ? "Close navigation" : "Open navigation"}
+          aria-expanded={open}
+          onClick={() => setOpen((v) => !v)}
+          className="rp-theme-toggle"
+          style={{
+            padding: "6px 14px",
+            border: "1px solid var(--rule-strong)",
+            borderRadius: "var(--radius-pill)",
+            background: "transparent",
+            color: "var(--fg-2)",
+            font: "400 12px/1 var(--font-mono)",
+            cursor: "pointer",
+          }}
+        >
+          {open ? "Close" : "Menu"}
+        </button>
+      </header>
 
       <aside
-        className={[
-          "fixed inset-y-0 left-0 z-40 w-[272px] bg-bg",
-          "border-r border-rule flex flex-col",
-          "transition-transform duration-slow ease-out",
-          open ? "translate-x-0" : "-translate-x-full",
-          "md:translate-x-0",
-        ].join(" ")}
+        className={"rp-sidebar" + (open ? " rp-sidebar--open" : "")}
+        style={{
+          position: "sticky",
+          top: 0,
+          height: "100vh",
+          flexDirection: "column",
+          borderRight: "1px solid var(--rule)",
+          background: "var(--bg)",
+        }}
       >
-        <div className="px-7 pt-7 pb-6">
-          <Link href="/" className="inline-flex items-baseline gap-[10px]">
-            {/* The mark is the one red element the nav carries. */}
-            <svg
-              viewBox="0 0 240 240"
-              aria-hidden
-              className="h-[13px] w-[13px] shrink-0 translate-y-[1px]"
-            >
-              <path
-                d="M120 0A120 120 0 1 1 35.147 35.147L120 120Z"
-                fill="var(--accent-fg)"
-              />
-            </svg>
-            <span className="text-[17px] tracking-[-0.015em] text-fg">
-              Red Planet
-            </span>
-          </Link>
-          <span className="mt-2 block font-mono text-label text-fg-3">
-            Documentation
-          </span>
-        </div>
-
-        <nav aria-label="Sections" className="flex-1 overflow-y-auto px-4 pb-6">
-          <ul>
-            {sections.map((s) => {
-              const href = `/${s.slug}`;
-              const active = pathname === href;
-              return (
-                <li key={s.slug}>
-                  <Link
-                    href={href}
-                    aria-current={active ? "page" : undefined}
-                    className={[
-                      "relative flex items-baseline gap-4 rounded-sm py-[10px] pl-4 pr-3",
-                      "transition-colors duration-fast ease-out",
-                      active
-                        ? "bg-bg-selected text-fg"
-                        : "text-fg-2 hover:bg-bg-hover hover:text-fg",
-                    ].join(" ")}
-                  >
-                    {/* Selected state is ink, never red. */}
-                    {active && (
-                      <span
-                        aria-hidden
-                        className="absolute left-0 top-[10px] bottom-[10px] w-[2px] rounded-pill bg-rule-ink"
-                      />
-                    )}
-                    <span
-                      className={[
-                        "font-mono text-[12px] tabular-nums shrink-0",
-                        active ? "text-fg-2" : "text-fg-4",
-                      ].join(" ")}
-                    >
-                      {s.short}
-                    </span>
-                    <span className="text-[15px] leading-[1.35]">{s.title}</span>
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-        </nav>
-
-        <div className="border-t border-rule px-7 py-5">
-          <a
-            href="https://www.redplanetdata.com"
-            className="font-mono text-label text-fg-3 transition-colors duration-fast
-                       ease-out hover:text-fg"
-          >
-            redplanetdata.com ↗
-          </a>
-        </div>
+        {logo}
+        <NavLinks pathname={pathname} onNavigate={() => setOpen(false)} />
+        <Footer />
       </aside>
-
-      {open && (
-        <div
-          aria-hidden
-          onClick={() => setOpen(false)}
-          className="fixed inset-0 z-30 md:hidden animate-fade-in"
-          style={{ background: "var(--scrim)" }}
-        />
-      )}
     </>
   );
 }

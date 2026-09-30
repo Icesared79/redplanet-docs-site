@@ -1,30 +1,48 @@
-/* Geist (sans) + Fragment Mono (mono), the Red Planet pairing. Loaded the way
-   the design system loads them; next/font in Next 14 predates Geist. */
-@import url("https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Fragment+Mono:ital@0;1&display=swap");
-@import url("./tokens/colors.css");
-@import url("./tokens/typography.css");
-@import url("./tokens/spacing.css");
-@import url("./tokens/effects.css");
+/* Red Planet Data — Documentation.
+   Design system: self-hosted fonts + the canonical tokens/components vendored
+   from C:\Users\Atlas\design\red-planet (copied into ./design-system; see that
+   folder's USAGE.md for the refresh procedure). Nothing here loads a font
+   from Google. */
+@import "./design-system/fonts.css";
+@import "./design-system/tokens/colors.css";
+@import "./design-system/tokens/typography.css";
+@import "./design-system/tokens/spacing.css";
+@import "./design-system/tokens/effects.css";
+@import "./design-system/components.css";
+@import "./design-system/docs-site.css";
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* ------------------------------------------------------------------ */
-/* Red Planet Design System v2                                         */
-/* Tokens are vendored in ./tokens. This file only wires them to the   */
-/* documentation surface: a Red Planet page, comfortable density.      */
-/* The font stacks below bind the pairing to the design-system names.  */
+/* Docs-site-only exception: forest/sage/paper are website "bands" in   */
+/* the canonical system, but on this site sage and paper figures must   */
+/* stay a LIGHT card even when the page around them is dark — only the  */
+/* forest figures go dark with the page. Re-ink sage/paper under        */
+/* [data-theme="dark"] (README "Dark mode"; not in the vendored DS      */
+/* because no other product needs a light card inside a dark page).    */
 /* ------------------------------------------------------------------ */
-
-:root {
-  --font-sans: 'Geist', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  --font-mono: 'Fragment Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+[data-theme="dark"] [data-surface="sage"],
+[data-theme="dark"] [data-surface="paper"] {
+  --fg-1: #141a16;
+  --fg-2: #4f5751;
+  --fg-4: #90968f;
+  --fg-inverse: #f3f2ed;
+  --rule-ink: #141a16;
+  --bg-hover: rgba(20, 26, 22, 0.05);
+  --bg-selected: rgba(20, 26, 22, 0.08);
+  --bg-inverse: #222d27;
 }
 
 html {
   background: var(--bg);
   color: var(--fg-1);
+  color-scheme: light;
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
 }
 
 body {
@@ -57,248 +75,6 @@ body {
   }
 }
 
-/* ------------------------------------------------------------------ */
-/* Eyebrow — the "§ 01 — How it works" section label                    */
-/* ------------------------------------------------------------------ */
-
-.rp-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-3);
-  font: var(--fw-regular) var(--fs-label) / 1.3 var(--font-mono);
-  letter-spacing: var(--tracking-mono);
-  color: var(--eyebrow-color);
-  margin: 0;
-}
-
-/* ------------------------------------------------------------------ */
-/* Prose — the markdown render                                         */
-/* ------------------------------------------------------------------ */
-
-.prose-rp {
+a {
   color: var(--fg-1);
-  font: var(--fw-regular) var(--fs-body-l) / var(--lh-body) var(--font-sans);
-  letter-spacing: var(--tracking-body);
-  text-wrap: pretty;
-}
-
-.prose-rp > * + * {
-  margin-top: var(--space-6);
-}
-
-/* Headlines never go bold; emphasis comes from size, not weight. */
-.prose-rp h1 {
-  font: var(--fw-regular) var(--fs-display-l) / 1.02 var(--font-sans);
-  letter-spacing: var(--tracking-heading);
-  text-wrap: balance;
-  color: var(--fg-1);
-  margin: 0 0 var(--space-8);
-}
-
-.prose-rp h2 {
-  font: var(--fw-regular) var(--fs-display-m) / var(--lh-heading) var(--font-sans);
-  letter-spacing: var(--tracking-heading);
-  text-wrap: balance;
-  color: var(--fg-1);
-  margin: var(--space-13) 0 var(--space-6);
-  padding-top: var(--space-7);
-  border-top: var(--border);
-}
-
-.prose-rp h1 + h2 {
-  margin-top: var(--space-9);
-}
-
-.prose-rp h3 {
-  font: var(--fw-medium) var(--fs-title) / var(--lh-title) var(--font-sans);
-  letter-spacing: var(--tracking-title);
-  color: var(--fg-1);
-  margin: var(--space-10) 0 var(--space-4);
-}
-
-.prose-rp h4 {
-  font: var(--fw-medium) var(--fs-title-s) / var(--lh-title) var(--font-sans);
-  color: var(--fg-1);
-  margin: var(--space-8) 0 var(--space-3);
-}
-
-.prose-rp p {
-  margin: 0 0 var(--space-6);
-}
-
-.prose-rp > :last-child {
-  margin-bottom: 0;
-}
-
-/* Emphasis comes from weight, never from color. */
-.prose-rp strong {
-  font-weight: var(--fw-medium);
-  color: var(--fg-1);
-}
-
-/* Specifics over adjectives: figures are set in mono, tabular. */
-.prose-rp strong.rp-fig {
-  font-family: var(--font-mono);
-  font-weight: var(--fw-regular);
-  font-variant-numeric: tabular-nums;
-  letter-spacing: var(--tracking-figure);
-  font-size: 0.95em;
-}
-
-.prose-rp em {
-  font-style: italic;
-  color: var(--fg-3);
-}
-
-/* A lone italic line under a figure is its caption. */
-.prose-rp p > em:only-child {
-  display: block;
-  font: var(--fw-regular) var(--fs-caption) / 1.45 var(--font-sans);
-  font-style: normal;
-  color: var(--fg-3);
-  margin-top: calc(var(--space-4) * -1);
-}
-
-/* Rules instead of boxes: list markers are hairlines, not dots. */
-.prose-rp ul,
-.prose-rp ol {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 var(--space-6);
-}
-
-.prose-rp li {
-  position: relative;
-  padding-left: var(--space-7);
-  margin-bottom: var(--space-4);
-}
-
-.prose-rp ul > li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.72em;
-  width: var(--space-5);
-  height: 1px;
-  background: var(--rule-strong);
-}
-
-.prose-rp ol {
-  counter-reset: rp-ol;
-}
-
-.prose-rp ol > li {
-  counter-increment: rp-ol;
-}
-
-.prose-rp ol > li::before {
-  content: counter(rp-ol, decimal-leading-zero);
-  position: absolute;
-  left: 0;
-  top: 0.15em;
-  font: var(--fw-regular) var(--fs-label) / 1.3 var(--font-mono);
-  color: var(--fg-3);
-}
-
-/* Figures carry their own list structure, so the prose list markers and
-   indents must not reach inside them. */
-.prose-rp figure li {
-  padding-left: 0;
-  margin-bottom: 0;
-}
-
-.prose-rp figure ol > li::before,
-.prose-rp figure ul > li::before {
-  content: none;
-}
-
-.prose-rp hr {
-  border: 0;
-  border-top: var(--border);
-  margin: var(--space-11) 0 var(--space-8);
-}
-
-/* Links go from a faint to a solid underline. */
-.prose-rp a {
-  color: var(--fg-1);
-  text-decoration: underline;
-  text-decoration-color: var(--rule-strong);
-  text-underline-offset: 3px;
-  text-decoration-thickness: 1px;
-  transition: text-decoration-color var(--dur-fast) var(--ease-out);
-}
-
-.prose-rp a:hover {
-  text-decoration-color: var(--fg-1);
-}
-
-.prose-rp img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-  border-radius: var(--radius-md);
-  border: var(--border);
-  background: var(--bg-subtle);
-  margin: var(--space-8) 0 var(--space-4);
-}
-
-.prose-rp code {
-  font-family: var(--font-mono);
-  font-size: 0.92em;
-  background: var(--bg-subtle);
-  border-radius: var(--radius-xs);
-  padding: 0.15em 0.4em;
-}
-
-.prose-rp pre {
-  background: var(--bg-subtle);
-  border-radius: var(--radius-sm);
-  padding: var(--space-6);
-  overflow-x: auto;
-  margin: 0 0 var(--space-6);
-}
-
-.prose-rp pre code {
-  background: none;
-  padding: 0;
-}
-
-.prose-rp blockquote {
-  margin: 0 0 var(--space-6);
-  padding-left: var(--space-7);
-  border-left: var(--bw-strong) solid var(--rule);
-  color: var(--fg-2);
-}
-
-/* Tables have no cell borders and no zebra stripes. A rule-ink line
-   sits under the header; hairlines separate rows. */
-.prose-rp table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 0 0 var(--space-6);
-  font-size: var(--fs-small);
-}
-
-.prose-rp thead th {
-  text-align: left;
-  font: var(--fw-regular) var(--fs-label) / 1.3 var(--font-mono);
-  color: var(--fg-3);
-  padding: 0 var(--space-5) var(--space-3) 0;
-  border-bottom: var(--bw-hair) solid var(--rule-ink);
-  white-space: nowrap;
-}
-
-.prose-rp tbody td {
-  padding: var(--space-4) var(--space-5) var(--space-4) 0;
-  border-bottom: var(--border);
-  vertical-align: top;
-  color: var(--fg-2);
-}
-
-.prose-rp tbody td:first-child {
-  color: var(--fg-1);
-}
-
-.prose-rp tbody tr:last-child td {
-  border-bottom: 0;
 }

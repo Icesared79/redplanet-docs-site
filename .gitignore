@@ -29,6 +29,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# ad-hoc local scripts (screenshots, one-off diagnostics)
+_scratch_*.mjs
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

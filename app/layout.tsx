@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import Sidebar from "@/components/Sidebar";
-import TopBar from "@/components/TopBar";
 import ThemeProvider from "@/components/ThemeProvider";
 import "./globals.css";
 
@@ -50,11 +49,21 @@ export default function RootLayout({
     >
       <body>
         <ThemeProvider>
-          <Sidebar />
-          <div className="md:pl-[272px]">
-            <TopBar />
-            <main className="px-5 md:px-14 py-14 md:py-20">
-              <div className="mx-auto max-w-[900px]">{children}</div>
+          <div
+            className="rp-root-grid"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "272px minmax(0,1fr)",
+              minHeight: "100vh",
+              background: "var(--bg)",
+              color: "var(--fg-1)",
+            }}
+          >
+            <Sidebar />
+            <main style={{ minWidth: 0, padding: "48px clamp(32px,5vw,80px) 96px" }}>
+              <div style={{ maxWidth: 960, margin: "0 auto", display: "flex", flexDirection: "column", gap: 20 }}>
+                {children}
+              </div>
             </main>
           </div>
           <Analytics />
