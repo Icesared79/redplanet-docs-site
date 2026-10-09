@@ -33,9 +33,9 @@ export default function StatBlock({ metrics }: { metrics: AtlasMetrics }) {
 
   const records = metrics.verifiedRecords;
   const subs = [
-    { label: "Active sources", value: metrics.activeSources.value ?? 0 },
-    { label: "Classified parcels", value: metrics.classifiedParcels.value ?? 0 },
-    { label: "Distress filings", value: metrics.distressFilings.value ?? 0 },
+    { label: "Active sources", value: metrics.activeSources.value },
+    { label: "Classified parcels", value: metrics.classifiedParcels.value },
+    { label: "Distress records", value: metrics.distressRecords.value },
   ];
 
   return (
@@ -115,16 +115,17 @@ export default function StatBlock({ metrics }: { metrics: AtlasMetrics }) {
                 letterSpacing: "-0.02em",
                 fontVariantNumeric: "tabular-nums",
                 whiteSpace: "nowrap",
+                color: s.value == null ? "var(--fg-3)" : undefined,
               }}
             >
-              {at(s.value)}
+              {s.value == null ? "—" : at(s.value)}
             </span>
           </div>
         ))}
       </div>
       <figcaption style={{ font: "400 13px/1.4 var(--font-mono)", color: "var(--fg-3)" }}>
-        These counts are read from Atlas and update every night as the record grows. They will be
-        higher when you read this than when this page was written.
+        Atlas data as of {metrics.asOf}. The record grows every night, so these counts are a floor
+        rather than a ceiling.
       </figcaption>
     </figure>
   );

@@ -1,0 +1,491 @@
+/* ------------------------------------------------------------------ */
+/* Atlas data visuals (components/visuals/*).                          */
+/*                                                                     */
+/* Each one is framed like an application window and filled from        */
+/* data/atlas-snapshot.json. Everything here is built from the          */
+/* canonical design-system tokens -- no invented color, font, spacing   */
+/* or radius. The `rpv-` prefix keeps them clear of the vendored DS     */
+/* (`rp-`) and of docs-site.css.                                       */
+/*                                                                     */
+/* They are server-rendered and carry no JavaScript. The breakpoint is  */
+/* 900px, matching docs-site.css, below which every table collapses to  */
+/* stacked rows so nothing scrolls sideways on a phone.                 */
+/* ------------------------------------------------------------------ */
+
+.rpv {
+  margin: 20px 0 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+/* ---------- the window ---------- */
+
+.rpv__win {
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-lg);
+  background: var(--bg-raised);
+  overflow: hidden;
+  min-width: 0;
+}
+
+.rpv__bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 16px;
+  height: 40px;
+  background: var(--bg-sunken);
+  border-bottom: 1px solid var(--rule);
+}
+
+.rpv__dots {
+  display: flex;
+  gap: 6px;
+  flex: none;
+}
+
+.rpv__dots span {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--fg-4);
+  opacity: 0.55;
+}
+
+.rpv__title {
+  font: 400 12px/1 var(--font-mono);
+  color: var(--fg-2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rpv__chip {
+  margin-left: auto;
+  flex: none;
+  font: 400 11px/1 var(--font-mono);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-pill);
+  padding: 5px 9px;
+}
+
+.rpv__body {
+  padding: 22px 22px 24px;
+  min-width: 0;
+}
+
+.rpv__caption {
+  font: 400 12px/1.5 var(--font-mono);
+  color: var(--fg-3);
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .rpv__body {
+    padding: 18px 16px 20px;
+  }
+  .rpv__bar {
+    padding: 0 12px;
+  }
+  .rpv__chip {
+    display: none;
+  }
+}
+
+/* ---------- shared pieces ---------- */
+
+.rpv-label {
+  font: 400 12px/1.3 var(--font-mono);
+  color: var(--fg-3);
+}
+
+.rpv-num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.rpv-divider {
+  border: 0;
+  border-top: 1px solid var(--rule);
+  margin: 18px 0;
+}
+
+/* A quiet pill for a status word. Atlas never uses red decoratively, so a
+   consequential state borrows --caution and a settled one --positive. */
+.rpv-state {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font: 400 12px/1 var(--font-mono);
+  white-space: nowrap;
+}
+
+.rpv-state::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--fg-4);
+  flex: none;
+}
+
+.rpv-state--live::before {
+  background: var(--positive);
+}
+.rpv-state--hold::before {
+  background: var(--caution);
+}
+.rpv-state--past::before {
+  background: var(--fg-4);
+}
+
+/* ---------- 1. at a glance ---------- */
+
+.rpv-glance__hero {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.rpv-glance__big {
+  font: 400 clamp(38px, 5.4vw, 64px) / 0.95 var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.035em;
+  color: var(--fg-1);
+}
+
+.rpv-glance__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px 24px;
+}
+
+.rpv-glance__cell {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-top: 1px solid var(--rule);
+  padding-top: 12px;
+  min-width: 0;
+}
+
+.rpv-glance__val {
+  font: 400 clamp(20px, 2.2vw, 26px) / 1.1 var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  color: var(--fg-1);
+}
+
+.rpv-glance__sub {
+  font: 400 11px/1.4 var(--font-mono);
+  color: var(--fg-4);
+}
+
+/* ---------- 2. retained filing history ---------- */
+
+.rpv-hist__head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px 24px;
+  align-items: baseline;
+}
+
+.rpv-hist__addr {
+  font: 500 17px/1.3 var(--font-sans);
+  letter-spacing: -0.01em;
+  color: var(--fg-1);
+}
+
+.rpv-hist__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 18px;
+  margin-top: 6px;
+}
+
+.rpv-hist__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.rpv-hist__row {
+  display: grid;
+  grid-template-columns: 104px 1fr auto;
+  gap: 8px 16px;
+  align-items: baseline;
+  padding: 12px 0;
+  border-top: 1px solid var(--rule);
+}
+
+.rpv-hist__row:first-child {
+  border-top: 0;
+}
+
+.rpv-hist__date {
+  font: 400 13px/1.3 var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--fg-2);
+  white-space: nowrap;
+}
+
+.rpv-hist__what {
+  font: 400 14px/1.4 var(--font-sans);
+  color: var(--fg-1);
+  min-width: 0;
+}
+
+.rpv-hist__tag {
+  font: 400 11px/1 var(--font-mono);
+  color: var(--fg-3);
+  white-space: nowrap;
+}
+
+/* A version the county replaced: struck through, so the eye reads it as a
+   state that is gone from the source but retained here. */
+.rpv-hist__row--gone .rpv-hist__what {
+  color: var(--fg-3);
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--fg-4);
+}
+
+.rpv-hist__foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 28px;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--rule-strong);
+}
+
+@media (max-width: 900px) {
+  .rpv-hist__row {
+    grid-template-columns: 1fr auto;
+  }
+  .rpv-hist__date {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ---------- 3. coverage ---------- */
+
+/* Flex rather than grid, and the rules are drawn on the cells themselves: an
+   auto-fit grid that cannot divide the markets evenly leaves an empty track,
+   and a grid whose gaps are painted by the container background turns that
+   empty track into a slab of rule colour. Here the last row's cells simply
+   grow to fill the width. */
+.rpv-cov {
+  display: flex;
+  flex-wrap: wrap;
+  background: var(--bg-raised);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.rpv-cov__cell {
+  flex: 1 1 168px;
+  min-width: 0;
+  padding: 16px 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-left: 1px solid var(--rule);
+  border-top: 1px solid var(--rule);
+  margin-left: -1px;
+  margin-top: -1px;
+}
+
+.rpv-cov__market {
+  font: 500 15px/1.3 var(--font-sans);
+  letter-spacing: -0.01em;
+  color: var(--fg-1);
+}
+
+.rpv-cov__count {
+  font: 400 clamp(19px, 2vw, 23px) / 1.1 var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  color: var(--fg-1);
+}
+
+.rpv-cov__unit {
+  font: 400 11px/1.4 var(--font-mono);
+  color: var(--fg-3);
+}
+
+/* ---------- 4. the nightly run ---------- */
+
+.rpv-run {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.rpv-run__steps {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  min-width: 0;
+}
+
+.rpv-run__step {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0 14px;
+  border-left: 1px solid var(--rule);
+  min-width: 0;
+}
+
+.rpv-run__step:first-child {
+  border-left: 0;
+  padding-left: 0;
+}
+
+.rpv-run__step:last-child {
+  padding-right: 0;
+}
+
+.rpv-run__val {
+  font: 400 clamp(21px, 2.4vw, 28px) / 1.05 var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.025em;
+  color: var(--fg-1);
+}
+
+.rpv-run__name {
+  font: 400 12px/1.4 var(--font-mono);
+  color: var(--fg-3);
+}
+
+.rpv-run__window {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  padding-top: 14px;
+  border-top: 1px solid var(--rule);
+}
+
+@media (max-width: 900px) {
+  .rpv-run__steps {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 20px;
+  }
+  .rpv-run__step,
+  .rpv-run__step:first-child {
+    border-left: 0;
+    padding: 0;
+  }
+}
+
+/* ---------- 5 + 6. product row tables ---------- */
+
+.rpv-tbl {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.rpv-tbl th {
+  text-align: left;
+  font: 400 11px/1.2 var(--font-mono);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+  padding: 0 14px 10px 0;
+  border-bottom: 1px solid var(--rule-strong);
+  white-space: nowrap;
+}
+
+.rpv-tbl th:last-child,
+.rpv-tbl td:last-child {
+  padding-right: 0;
+}
+
+.rpv-tbl td {
+  padding: 11px 14px 11px 0;
+  border-bottom: 1px solid var(--rule);
+  color: var(--fg-2);
+  font: 400 13px/1.4 var(--font-sans);
+  vertical-align: top;
+}
+
+.rpv-tbl tr:last-child td {
+  border-bottom: 0;
+}
+
+.rpv-tbl .is-strong {
+  color: var(--fg-1);
+  font-weight: 500;
+}
+
+.rpv-tbl .is-right {
+  text-align: right;
+}
+
+.rpv-tbl .is-mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* Phone: the same rows as a stacked list. */
+.rpv-stack {
+  display: none;
+  flex-direction: column;
+}
+
+.rpv-stack__row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.rpv-stack__row:last-child {
+  border-bottom: 0;
+}
+
+.rpv-stack__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.rpv-stack__name {
+  font: 500 15px/1.3 var(--font-sans);
+  letter-spacing: -0.01em;
+  color: var(--fg-1);
+  min-width: 0;
+}
+
+.rpv-stack__facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 18px;
+}
+
+@media (max-width: 900px) {
+  .rpv-tbl-wrap {
+    display: none;
+  }
+  .rpv-stack {
+    display: flex;
+  }
+}

@@ -2,6 +2,7 @@ import { PageHeader, Lead, H2, Body, PageFooter } from "@/components/rp/layout";
 import { LiveFigure, InlineFigure } from "@/components/rp/primitives";
 import StatBlock from "@/components/figures/StatBlock";
 import FilingHistory from "@/components/figures/FilingHistory";
+import AtlasAtAGlance from "@/components/visuals/AtlasAtAGlance";
 import { PAGES } from "@/lib/nav";
 import { getAtlasMetrics } from "@/lib/metrics";
 
@@ -59,6 +60,8 @@ export default async function OverviewPage() {
       </Body>
 
       <StatBlock metrics={metrics} />
+
+      <AtlasAtAGlance />
 
       <H2 id="ov-built">Built Directly, by Rule</H2>
       <Body>

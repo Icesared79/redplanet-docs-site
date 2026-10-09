@@ -1,0 +1,243 @@
+{
+  "as_of": "2026-10-09",
+  "as_of_label": "October 9, 2026",
+  "generated_at": "2026-10-09T15:37:48+00:00",
+  "records_held": 780532590,
+  "records_held_freshness": "partial",
+  "records_live": 306408066,
+  "records_archived": 512422371,
+  "verified_records": 306408066,
+  "records_added_last_run": 1332071,
+  "records_added_freshness": "valid",
+  "active_sources": 319,
+  "classified_parcels": 22850816,
+  "distress_records": 2584746,
+  "distress_layers": 9,
+  "nightly": {
+    "started_et": "2026-10-09 00:45",
+    "finished_et": "2026-10-09 09:40",
+    "run_date_et": "2026-10-09",
+    "sources_checked": 105,
+    "sources_completed": 97,
+    "records_processed": 5488946
+  },
+  "filing_history": {
+    "county": "Polk",
+    "address": "\u2022\u2022\u2022 ZINNIA LN E",
+    "city": "Poinciana",
+    "state": "FL",
+    "zip": "34759",
+    "parcel": "2828\u2022\u2022\u2022",
+    "assessed_value": 237377.0,
+    "judgment_amount": 10651.65,
+    "events": [
+      {
+        "date": "2026-06-09",
+        "label": "Auction held, no sale",
+        "outcome": "no_sale",
+        "amount": null,
+        "superseded": true,
+        "first_kept": "2026-09-19"
+      },
+      {
+        "date": "2026-07-17",
+        "label": "Auction held, no sale",
+        "outcome": "no_sale",
+        "amount": null,
+        "superseded": true,
+        "first_kept": "2026-09-19"
+      },
+      {
+        "date": "2026-08-21",
+        "label": "Auction scheduled",
+        "outcome": "scheduled",
+        "amount": null,
+        "superseded": true,
+        "first_kept": "2026-09-19"
+      },
+      {
+        "date": "2026-08-22",
+        "label": "Auction scheduled",
+        "outcome": "scheduled",
+        "amount": null,
+        "superseded": true,
+        "first_kept": "2026-09-19"
+      },
+      {
+        "date": "2026-09-22",
+        "label": "Sold at auction",
+        "outcome": "sold",
+        "amount": 172500.0,
+        "superseded": false,
+        "first_kept": "2026-09-19"
+      }
+    ],
+    "kept_versions": 4
+  },
+  "coverage": [
+    {
+      "market": "Florida",
+      "count": 10998001,
+      "unit": "parcels",
+      "jurisdictions": 67,
+      "jurisdiction_label": "counties"
+    },
+    {
+      "market": "North Carolina",
+      "count": 5817111,
+      "unit": "parcels",
+      "jurisdictions": 99,
+      "jurisdiction_label": "counties"
+    },
+    {
+      "market": "Connecticut",
+      "count": 1272905,
+      "unit": "parcels",
+      "jurisdictions": 169,
+      "jurisdiction_label": "towns"
+    },
+    {
+      "market": "South Carolina",
+      "count": 1227144,
+      "unit": "parcels",
+      "jurisdictions": 10,
+      "jurisdiction_label": "counties"
+    },
+    {
+      "market": "New York City",
+      "count": 307469,
+      "unit": "recorded instruments",
+      "jurisdictions": 5,
+      "jurisdiction_label": "boroughs"
+    }
+  ],
+  "distress": [
+    {
+      "county": "Miami-Dade",
+      "type": "Foreclosure",
+      "address": "\u2022\u2022\u2022 N BAYSHORE DR",
+      "city": "Miami",
+      "sale_date": "2026-10-28",
+      "judgment": 11617417.28,
+      "assessed": 7650753.0
+    },
+    {
+      "county": "Miami-Dade",
+      "type": "Foreclosure",
+      "address": "\u2022\u2022\u2022 83 ST",
+      "city": "Miami Beach",
+      "sale_date": "2026-10-21",
+      "judgment": 2360185.0,
+      "assessed": 866374.0
+    },
+    {
+      "county": "Hillsborough",
+      "type": "Foreclosure",
+      "address": "\u2022\u2022\u2022 W ESTRELLA ST",
+      "city": "Tampa",
+      "sale_date": "2026-10-15",
+      "judgment": 2125210.55,
+      "assessed": 1888407.0
+    },
+    {
+      "county": "Volusia",
+      "type": "Foreclosure",
+      "address": "\u2022\u2022\u2022 N BEACH ST",
+      "city": "Daytona Beach",
+      "sale_date": "2026-10-09",
+      "judgment": 2050569.38,
+      "assessed": 467118.0
+    },
+    {
+      "county": "Miami-Dade",
+      "type": "Foreclosure",
+      "address": "\u2022\u2022\u2022 SW 268 ST",
+      "city": "Homestead",
+      "sale_date": "2026-10-28",
+      "judgment": 1889829.77,
+      "assessed": 1125084.0
+    },
+    {
+      "county": "Pinellas",
+      "type": "Foreclosure",
+      "address": "\u2022\u2022\u2022 BONITA WAY S",
+      "city": "St Petersburg",
+      "sale_date": "2026-10-14",
+      "judgment": 1756117.47,
+      "assessed": 412896.0
+    }
+  ],
+  "datacenter": {
+    "verified": 23,
+    "tracked": 38,
+    "moratorium": 11,
+    "rows": [
+      {
+        "jurisdiction": "Edgewater",
+        "kind": "Municipality",
+        "county": "Volusia County",
+        "posture": "Moratorium adopted",
+        "is_moratorium": true,
+        "since": "2026-09-14",
+        "stage": "Second reading",
+        "vote": null,
+        "document": true
+      },
+      {
+        "jurisdiction": "Ormond Beach",
+        "kind": "Municipality",
+        "county": "Volusia County",
+        "posture": "Moratorium adopted",
+        "is_moratorium": true,
+        "since": "2026-08-25",
+        "stage": "Second reading",
+        "vote": null,
+        "document": true
+      },
+      {
+        "jurisdiction": "DeSoto County",
+        "kind": "County",
+        "county": "DeSoto County",
+        "posture": "Moratorium adopted",
+        "is_moratorium": true,
+        "since": "2026-07-28",
+        "stage": "Final hearing",
+        "vote": "5-0",
+        "document": true
+      },
+      {
+        "jurisdiction": "Orange County",
+        "kind": "County",
+        "county": "Orange County",
+        "posture": "Under discussion",
+        "is_moratorium": false,
+        "since": "2026-09-15",
+        "stage": null,
+        "vote": null,
+        "document": true
+      },
+      {
+        "jurisdiction": "North Port",
+        "kind": "Municipality",
+        "county": "Sarasota County",
+        "posture": "Under discussion",
+        "is_moratorium": false,
+        "since": "2026-09-03",
+        "stage": null,
+        "vote": null,
+        "document": true
+      },
+      {
+        "jurisdiction": "Marion County",
+        "kind": "County",
+        "county": "Marion County",
+        "posture": "Under discussion",
+        "is_moratorium": false,
+        "since": "2026-08-31",
+        "stage": null,
+        "vote": "6-0",
+        "document": true
+      }
+    ]
+  }
+}

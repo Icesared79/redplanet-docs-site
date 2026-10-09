@@ -10,6 +10,7 @@
 @import "./design-system/tokens/effects.css";
 @import "./design-system/components.css";
 @import "./design-system/docs-site.css";
+@import "./design-system/visuals.css";
 
 @tailwind base;
 @tailwind components;

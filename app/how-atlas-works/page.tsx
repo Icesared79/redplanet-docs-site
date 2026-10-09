@@ -2,6 +2,7 @@ import { PageHeader, Lead, H2, Body, PageFooter } from "@/components/rp/layout";
 import { InlineFigure } from "@/components/rp/primitives";
 import NightlyPipeline from "@/components/figures/NightlyPipeline";
 import QualityTiers from "@/components/figures/QualityTiers";
+import NightlyRun from "@/components/visuals/NightlyRun";
 import { PAGES } from "@/lib/nav";
 
 export const revalidate = 86400;
@@ -21,6 +22,8 @@ export default function HowAtlasWorksPage() {
       </Lead>
 
       <NightlyPipeline />
+
+      <NightlyRun />
 
       <H2 id="hw-disc">Discovery and Acquisition</H2>
       <Body>

@@ -1,5 +1,7 @@
 import { PageHeader, Lead, H2, Body, PageFooter } from "@/components/rp/layout";
 import { InlineFigure } from "@/components/rp/primitives";
+import DistressView from "@/components/visuals/DistressView";
+import DataCenterDecisions from "@/components/visuals/DataCenterDecisions";
 import { PAGES } from "@/lib/nav";
 
 export const revalidate = 86400;
@@ -46,6 +48,8 @@ export default function ProductsPage() {
         a building&apos;s future and call it intelligence.
       </Body>
 
+      <DistressView />
+
       <H2 id="pr-dc">The Data Center Product</H2>
       <Body>
         The jurisdiction record for data center development, built for the finance,
@@ -71,6 +75,8 @@ export default function ProductsPage() {
         publish. Rollout beyond Florida runs North Carolina, Georgia, Ohio, Texas and
         Virginia, with Connecticut as the policy state.
       </Body>
+
+      <DataCenterDecisions />
 
       <H2 id="pr-sun">SunScope</H2>
       <Body>

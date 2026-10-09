@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { PageHeader, Lead, H2, Body, DefRow, TableWrap, PageFooter } from "@/components/rp/layout";
 import { LiveFigure, InlineFigure } from "@/components/rp/primitives";
+import RetainedFilingHistory from "@/components/visuals/RetainedFilingHistory";
 import { PAGES } from "@/lib/nav";
 import { getAtlasMetrics } from "@/lib/metrics";
 
@@ -81,9 +82,11 @@ export default async function DataPage() {
 
         <DefRow term="Distress and filings.">
           <p className="rp-body" style={{ color: "var(--fg-2)" }}>
-            <InlineFigure>{metrics.distressFilings.value}</InlineFigure> filings across tax
-            delinquency, foreclosure and lis pendens activity, recorded liens, estate proxies
-            and code enforcement. Distress coverage is county-level and uneven by design,
+            <InlineFigure>
+              {metrics.distressRecords.value?.toLocaleString("en-US") ?? "—"}
+            </InlineFigure>{" "}
+            records across tax delinquency, foreclosure and lis pendens activity, recorded liens,
+            estate proxies and code enforcement. Distress coverage is county-level and uneven by design,
             because we build the vectors that exist in a given jurisdiction rather than
             claiming a uniform national layer. One principle here was earned the hard way:
             administrative distress outranks foreclosure. Tax delinquency, code enforcement
@@ -123,6 +126,8 @@ export default async function DataPage() {
           </p>
         </DefRow>
       </div>
+
+      <RetainedFilingHistory />
 
       <H2 id="da-infra">Infrastructure</H2>
       <div className="rp-def-row" style={{ display: "flex", flexDirection: "column" }}>

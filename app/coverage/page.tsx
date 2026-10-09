@@ -2,6 +2,7 @@ import { PageHeader, Lead, H2, Body, TableWrap, PageFooter } from "@/components/
 import { InlineFigure } from "@/components/rp/primitives";
 import MarketGate from "@/components/figures/MarketGate";
 import BaselineStrip from "@/components/figures/BaselineStrip";
+import CoverageGrid from "@/components/visuals/CoverageGrid";
 import { PAGES } from "@/lib/nav";
 
 export const revalidate = 86400;
@@ -11,7 +12,7 @@ const OPERATES = [
     market: "Connecticut",
     status: "live" as const,
     label: "Open, template market",
-    parcels: "1,352,834",
+    parcels: "1,272,905",
     desc: "Full stack. Statewide sales, propensity scoring, governance layer across all 178 jurisdictions",
   },
   {
@@ -42,7 +43,7 @@ const OPERATES = [
     market: "South Carolina",
     status: "live" as const,
     label: "Open",
-    parcels: "1,469,961",
+    parcels: "1,227,144",
     desc: "Metro-concentrated across four metros, never statewide. Native sale price in eight counties",
   },
   {
@@ -112,6 +113,9 @@ export default function CoveragePage() {
       <MarketGate />
 
       <H2 id="co-where">Where Atlas Operates</H2>
+
+      <CoverageGrid />
+
       <TableWrap className="rp-coverage-table">
         <table className="rp-table" style={{ fontSize: 14, minWidth: 780 }}>
           <thead>

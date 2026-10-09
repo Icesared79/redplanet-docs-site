@@ -1,0 +1,21 @@
+{
+  "generated_at": "2026-10-09T15:37:48+00:00",
+  "as_of": "2026-10-09",
+  "atlas_root": "C:\\Users\\Atlas\\Levelpie\\atlas",
+  "note": "Query/metric provenance for data/atlas-snapshot.json. Never imported by app code, so no internal table name reaches the site.",
+  "sources": {
+    "canonical.records_held": "runners/canonical_metrics.py :: records_held: atlas_records_headline (records ledger daily close, held at last balanced figure when under review) -- figure as of 2026-10-08, latest close 2026-10-09 (unbalanced) [freshness=partial]",
+    "canonical.records_live": "runners/canonical_metrics.py :: total_verified: SUM(exact_count) FROM atlas_verified_record_counts WHERE table_class = 'external_ingest' \u2014 records ingested from external sources, live tables only [freshness=valid]",
+    "canonical.records_stored": "runners/canonical_metrics.py :: archived_records (stored): SUM(row_count) FROM atlas_stored_record_segments (verified, not restored, not also live) \u2014 636 table(s) with rows in S3 parquet, verified round-trippable, not in the live total [freshness=valid]",
+    "canonical.total_verified": "runners/canonical_metrics.py :: total_verified: SUM(exact_count) FROM atlas_verified_record_counts WHERE table_class = 'external_ingest' \u2014 records ingested from external sources, live tables only [freshness=valid]",
+    "canonical.overnight_new_rows": "runners/canonical_metrics.py :: overnight_new_rows: SUM(external_ingest exact_count) (306,408,066) - atlas_ingest_table_daily[2026-10-08] external (305,075,995) [freshness=valid]",
+    "active_sources": "atlas_stats_cache['active_sources_total'] -- the maintained figure every Red Planet surface reads, so the docs site cannot diverge from the dashboard",
+    "classified_parcels": "count(atlas_properties) where quality_tier in verified, usable, review, unreliable",
+    "distress_records": "sum(exact_count) over the primary distress filing layers in atlas_verified_record_counts (explicit list of 9 first-party filing layers; derived summaries and event/history tables deliberately excluded)",
+    "nightly_run": "atlas_sync_log over the window opened by the most recent 03:30 UTC pipeline kickoff (10h), finalization rows excluded; records added comes from the canonical overnight_new_rows metric, not from this window",
+    "filing_history": "one foreclosure case in atlas_fl_auction_events joined to atlas_fl_auction_status_history, which is the nightly capture ledger: every auction setting Atlas has seen for the case, including the ones the county replaced. Address masked, no party names selected",
+    "coverage": "spine size per live market from atlas_verified_record_counts (the view that carries the liveness and class filters); jurisdiction counts are a count(DISTINCT) of the jurisdiction column on each market's own spine",
+    "distress_view": "atlas_fl_auction_events: scheduled distress sales dated today or later, carrying the judgment amount and the assessed value Atlas already holds for the same parcel. Addresses masked; no party names selected",
+    "datacenter_view": "atlas_fl_jurisdiction_dc_status joined to atlas_fl_jurisdictions, verified rows only -- an entry is verified when the adopted document is in hand. Vote tallies stripped to the numeric result so no person is named"
+  }
+}
