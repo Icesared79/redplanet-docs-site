@@ -83,7 +83,25 @@ export default function ProductsPage() {
         A solar and roofing field-sales tool for installers, currently Connecticut only
         with one beta client. Properties are surfaced by roof characteristics, solar
         potential, utility rates and incentive eligibility across{" "}
-        <InlineFigure>1,274,322</InlineFigure> scored parcels.
+        <InlineFigure>1,224,996</InlineFigure> scored parcels.
+      </Body>
+
+      <H2 id="pr-leancre">Licensed by Other Companies</H2>
+      <Body>
+        Atlas is also licensed by companies Red Planet does not own, which build their
+        own businesses on the records rather than reselling them. These are customers,
+        not products, and Red Planet is the author of the records they license and
+        nothing else they publish.
+      </Body>
+      <Body>
+        <span style={{ fontWeight: 500, color: "var(--fg-1)" }}>LeanCRE.</span> A separate
+        company that sources and underwrites commercial real estate loans for banks,
+        private lenders and family offices. It licenses Atlas for the record behind each
+        property it presents, the surroundings of that property and its owner, and for
+        surveillance of collateral and borrowers through maturity. Its reports carry
+        &quot;Property data provided by Red Planet Data&quot; and nothing further;
+        LeanCRE is a service provider that does not lend its own capital, and it holds
+        its own customer relationships.
       </Body>
 
       <H2 id="pr-cost">What a New Product Costs to Build</H2>

@@ -78,6 +78,7 @@ export const PAGES: DocPage[] = [
       { id: "pr-signal", title: "Signal" },
       { id: "pr-dc", title: "The Data Center Product" },
       { id: "pr-sun", title: "SunScope" },
+      { id: "pr-leancre", title: "Licensed by Other Companies" },
       { id: "pr-cost", title: "What a New Product Costs to Build" },
     ],
   },

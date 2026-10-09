@@ -34,6 +34,7 @@ export default function ThemeToggle() {
         color: "var(--fg-2)",
         font: "400 12px/1 var(--font-mono)",
         cursor: "pointer",
+        flex: "none",
       }}
     >
       <span

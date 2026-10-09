@@ -144,7 +144,21 @@ function Footer() {
       >
         redplanetdata.com ↗
       </a>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12, marginTop: 6 }}>
+      {/* The domain (163px) and the toggle (77px) need 252px side by side, but
+          the sidebar footer only has 223px of inner width, so the pill used to
+          hang 29px past the column and sit on the divider. Wrapping drops it to
+          its own line when it cannot fit, and flex-none keeps it from being
+          squashed into an ellipsis on the line it shares. */}
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "space-between",
+          alignItems: "center",
+          gap: "10px 12px",
+          marginTop: 6,
+        }}
+      >
         <span style={{ font: "400 12px/1.3 var(--font-mono)", color: "var(--fg-3)" }}>
           docs.redplanetdata.com
         </span>
