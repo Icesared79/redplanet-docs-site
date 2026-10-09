@@ -87,6 +87,27 @@ duplicates) and South Carolina 1,469,961 -> **1,227,144**.
 says "a further 14,092,473 rows we track but never present as coverage"; the
 canonical `internal_ops_records` is **13,220,883** as of 2026-10-09.
 
+## COFOUNDER-1b (2026-10-09) — LeanCRE, and the sidebar toggle
+
+`/products` gained a "Licensed by Other Companies" section (`pr-leancre`, also
+added to `lib/nav.ts` so the scroll-spy subnav lists it). **LeanCRE is a
+separate company, not a Red Planet product** — operator decision this session,
+consistent with the global rule and with leancre.com's own footer ("Property
+data provided by Red Planet Data"). It is described as a licensee; no LeanCRE
+mark or brand colour appears on any Red Planet surface, and the page still says
+three products run on Atlas, because that is still true.
+
+SunScope's scored-parcel figure was stale: 1,274,322 -> **1,224,996**, the
+current size of the Connecticut solar scoring layer.
+
+Sidebar footer: the domain string (163px) and the theme pill (77px) needed
+252px where the footer has 223px of inner width, so the pill hung 29px past the
+column and sat on the divider. The row now wraps and the pill is `flex: none`.
+Verified live at 1440px (pill 146px inside the column) and at 390px (inside the
+drawer, 25px clear; the sidebar itself is `display: none` at that width).
+
+Shipped as `344bc0a` / `dpl_` of 2026-10-09 12:04, alias docs.redplanetdata.com.
+
 ## Left in place, unreferenced (not deleted — destructive-delete was blocked)
 
 `content/*.md`, `lib/sections.ts`, `lib/content.ts`, `app/tokens/*.css`,
