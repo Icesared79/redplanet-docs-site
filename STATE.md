@@ -2,6 +2,21 @@
 
 ## Current phase
 
+LOGO-1.1 (2026-10-12): opaque grounds for the favicon set and the OG card, from
+the brand folder's contrast pass. The mark's bands are ink on the light variant,
+so a transparent raster only works where we choose the ground: the tab icon
+measured 1.06:1 on a browser's dark tab strip and the OG card 1.12:1 on a client
+that composites link previews onto white, both reading as a plain red disc. Tab
+icons now sit on paper-100 with the light variant, the OG card on the logo's own
+ink with the on-dark lockup; all four stay byte-identical to
+`rpd/packages/tokens/brand/`.
+
+No code changed here. The sidebar and mobile-bar marks were audited on the live
+site in both themes (13.95:1 and 15.76:1) and are correct as they are — this
+site's `Mark` takes `--fg-1` for its bands, which already follows the surface.
+
+Before that:
+
 LOGO-1 (2026-10-12): the new Red Planet Data logo. The company mark changed
 from the notched disc to a banded disc — red above the horizon, bands below it.
 Live at docs.redplanetdata.com on `dba06c8` /
