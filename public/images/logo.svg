@@ -1,5 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <rect width="64" height="64" rx="12" fill="#1A1612"/>
-  <circle cx="32" cy="32" r="22" fill="rgba(216,57,47,0.18)"/>
-  <circle cx="32" cy="32" r="13" fill="#D8392F"/>
+  <!-- The Red Planet Data mark (LOGO-1, 2026-10-12), on-dark variant, on the
+       tile this file has always carried. Geometry: 48-unit grid, scaled 0.818
+       and centred, so the disc keeps the diameter the old mark's halo had.
+       Canonical source: rpd/packages/tokens/brand/red-planet-mark-on-dark.svg -->
+  <g transform="translate(12.364 12.364) scale(0.81818)">
+    <defs><clipPath id="logoDisc"><circle cx="24" cy="24" r="22"/></clipPath></defs>
+    <g clip-path="url(#logoDisc)">
+      <rect x="0" y="0" width="48" height="23" fill="#E36A55"/>
+      <rect x="0" y="25" width="48" height="5" fill="#F3F2ED"/>
+      <rect x="0" y="32" width="48" height="5" fill="#F3F2ED"/>
+      <rect x="0" y="39" width="48" height="5" fill="#F3F2ED"/>
+      <rect x="0" y="46" width="48" height="2" fill="#F3F2ED"/>
+    </g>
+  </g>
 </svg>

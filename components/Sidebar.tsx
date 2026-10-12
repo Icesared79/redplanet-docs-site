@@ -2,15 +2,38 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useId, useState } from "react";
 import { PAGES } from "@/lib/nav";
 import ThemeToggle from "./ThemeToggle";
 
-const Mark = ({ size = 20 }: { size?: number }) => (
-  <svg viewBox="0 0 120 120" width={size} height={size} aria-hidden="true" style={{ display: "block", flex: "none" }}>
-    <path d="M60 60 L60 0 A60 60 0 1 1 20.9 14.4 Z" fill="var(--accent)" />
-  </svg>
-);
+/* The Red Planet Data mark (LOGO-1, 2026-10-12): a disc, red above the horizon
+   and banded below it. Geometry is the canonical
+   rpd/packages/tokens/brand/red-planet-mark.svg, on its 48-unit grid.
+
+   Two colours, not one: the disc is --accent, the bands --fg-1, which is ink on
+   the light page and paper in the dark theme — the difference between the brand
+   folder's mark and mark-on-dark files. A single-fill copy renders a plain disc
+   with the bands invisible. The clipPath id is per-instance because the sidebar
+   and the mobile bar both mount one. */
+const Mark = ({ size = 20 }: { size?: number }) => {
+  const clip = useId();
+  return (
+    <svg viewBox="0 0 48 48" width={size} height={size} aria-hidden="true" style={{ display: "block", flex: "none" }}>
+      <defs>
+        <clipPath id={clip}>
+          <circle cx="24" cy="24" r="22" />
+        </clipPath>
+      </defs>
+      <g clipPath={`url(#${clip})`}>
+        <rect x="0" y="0" width="48" height="23" fill="var(--accent)" />
+        <rect x="0" y="25" width="48" height="5" fill="var(--fg-1)" />
+        <rect x="0" y="32" width="48" height="5" fill="var(--fg-1)" />
+        <rect x="0" y="39" width="48" height="5" fill="var(--fg-1)" />
+        <rect x="0" y="46" width="48" height="2" fill="var(--fg-1)" />
+      </g>
+    </svg>
+  );
+};
 
 function useActiveSub(subIds: string[]): string | null {
   const [active, setActive] = useState<string | null>(null);
