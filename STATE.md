@@ -2,6 +2,32 @@
 
 ## Current phase
 
+LOGO-1 (2026-10-12): the new Red Planet Data logo. The company mark changed
+from the notched disc to a banded disc — red above the horizon, bands below it.
+Live at docs.redplanetdata.com on `dba06c8` /
+`dpl_H2fyZkALhPACEUdLRseCLSx8kA5v`, checked by fetching each file from the live
+domain and comparing sha256 against the canonical copy (all eight matched, and
+the served HTML carries the new inline mark with no occurrence of the old path).
+
+Replaced: `public/favicon.ico` (16/32/48), `favicon-16.png`, `favicon-32.png`,
+`apple-touch-icon.png`, `og-image.png`, the three `public/brand` SVGs, the
+inline `Mark` in `components/Sidebar.tsx`, and `public/images/logo.svg` +
+`logo-apple.png` — which carried an older company mark from the initial
+scaffold and are referenced by nothing.
+
+Decisions that affect later work:
+
+- The canonical logo lives in `rpd/packages/tokens/brand/`, with the rules for
+  picking a variant in its README. Everything in `public/` here is a
+  byte-identical copy of a file there.
+- The mark is two colours. `Mark` takes `--accent` for the disc and `--fg-1`
+  for the bands, which is ink on the page and paper in the dark theme. A
+  single-fill copy draws a plain disc with the bands invisible.
+- The lockup SVGs set their wordmark as live `<text>` in Geist 400, so through
+  `<img>` they fall back to `system-ui`. Inline them where it must be exact.
+
+Before that:
+
 COFOUNDER-1 (2026-10-09): six Atlas data visuals added across five pages, and
 the dead headline counts fixed. Live at docs.redplanetdata.com on
 `751b912` / `dpl_3xDAMP289wByW2DNtUYuiJwe5pF9`.
