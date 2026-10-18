@@ -1,5 +1,5 @@
 // Thin ports of the Red Planet design system's React primitives
-// (C:\Users\Atlas\design\red-planet\components\...), typed for this repo.
+// (rpd packages/red-planet-design/components/...), typed for this repo.
 // Kept tiny and dependency-free rather than importing the DS's own bundle,
 // per the handoff: "recreate with the repo's equivalents, do not ship
 // _ds_bundle.js."

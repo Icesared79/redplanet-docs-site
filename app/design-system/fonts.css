@@ -1,6 +1,6 @@
 /* Self-hosted Geist 400/500 + Fragment Mono 400, latin subset, woff2 only.
-   Copied from C:\Users\Atlas\design\red-planet\fonts\ (source of truth on
-   this machine). Never load fonts from Google — see that folder's USAGE.md. */
+   Copied from rpd packages/red-planet-design/fonts/ (the design system's source
+   of truth, in Git). Never load fonts from Google — see that package's brand-book.md. */
 
 @font-face {
   font-family: 'Geist';
