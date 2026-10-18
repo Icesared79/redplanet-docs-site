@@ -1,7 +1,7 @@
 /* Red Planet Data — Documentation.
    Design system: self-hosted fonts + the canonical tokens/components vendored
-   from C:\Users\Atlas\design\red-planet (copied into ./design-system; see that
-   folder's USAGE.md for the refresh procedure). Nothing here loads a font
+   from rpd packages/red-planet-design (copied into ./design-system; see that
+   package's README.md for how it changes). Nothing here loads a font
    from Google. */
 @import "./design-system/fonts.css";
 @import "./design-system/tokens/colors.css";
