@@ -402,7 +402,7 @@ function PipelineFigure() {
 
 /* ---------------------------------------------------------------- */
 
-const FIGURES: Record<string, () => JSX.Element> = {
+const FIGURES: Record<string, () => React.JSX.Element> = {
   scale: ScaleFigure,
   tiers: TiersFigure,
   versioning: VersioningFigure,
