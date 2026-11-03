@@ -1,5 +1,13 @@
 # redplanet-docs-site — state
 
+## VULN-2.1 (2026-11-02, session `cc-vuln21-20261102`)
+
+Next.js 15.5.28 and React 19, up from Next 14, which has no patched release. Overrides for postcss, nanoid 3, source-map-js, browserslist and ws. Scan: 0 critical, 0 high, 2 moderate (postcss-selector-parser, under tailwind 3).
+
+Changes React 19 needed: `React.JSX.Element` in `components/Figure.tsx`, and `useRef` takes an argument in `FilingHistory` and `NightlyPipeline`.
+
+Compared with the live site before merging, every page at 1440 and 390 wide: the same text, links and images, and no pixel differences.
+
 ## Current phase
 
 LOGO-1.1 (2026-10-12): opaque grounds for the favicon set and the OG card, from

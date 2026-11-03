@@ -11,7 +11,7 @@ const STEP_MS = 1100;
 export default function FilingHistory() {
   const { ref, armed, reduced, replay } = useReveal<HTMLElement>();
   const [step, setStep] = useState(-1);
-  const timer = useRef<ReturnType<typeof setInterval>>();
+  const timer = useRef<ReturnType<typeof setInterval> | undefined>(undefined);
 
   const stop = () => {
     if (timer.current) clearInterval(timer.current);
